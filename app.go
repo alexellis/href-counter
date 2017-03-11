@@ -1,17 +1,13 @@
 package main
 
 import (
+	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
-	"os"
-
-	"fmt"
-
 	"net/url"
-
+	"os"
 	"strings"
-
-	"encoding/json"
 
 	"golang.org/x/net/html"
 )
@@ -21,10 +17,15 @@ type scrapeDataStore struct {
 	External int `json:"external"`
 }
 
+func isInternal(parsedLink *url.URL, siteUrl *url.URL, link string) bool {
+	return parsedLink.Host == siteUrl.Host || strings.Index(link, "#") == 0 || len(parsedLink.Host) == 0
+}
+
 func main() {
 	urlIn := os.Getenv("url")
 	if len(urlIn) == 0 {
-		log.Fatalln("Need a valid url as an env-var.")
+		urlIn = "https://www.alexellis.io/"
+		// log.Fatalln("Need a valid url as an env-var.")
 	}
 
 	siteUrl, parseErr := url.Parse(urlIn)
@@ -58,13 +59,14 @@ func main() {
 
 						parsedLink, parseLinkErr := url.Parse(link)
 
+						// debug
 						// if strings.Index(link, "#") == 0 {
 						// 	fmt.Println(link)
 						// } else {
 						// 	fmt.Println(parsedLink)
 						// }
 						if parseLinkErr == nil {
-							if parsedLink.Host == siteUrl.Host || strings.Index(link, "#") == 0 || len(parsedLink.Host) == 0 {
+							if isInternal(parsedLink, siteUrl, link) {
 								scrapeData.Internal++
 							} else {
 								scrapeData.External++
