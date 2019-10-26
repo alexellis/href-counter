@@ -13,11 +13,35 @@ Used in these two blog posts:
 * [One-shot containers on Docker Swarm](http://blog.alexellis.io/containers-on-swarm/)
 * [Builder pattern vs. Multi-stage builds in Docker](http://blog.alexellis.io/mutli-stage-docker-builds/)
 
-Example:
+### Running the example
 
-```
-$ url=http://blog.alexellis.io/ go run app.go
-{"internal":40,"external":2}
+* With Go
 
-$ url=http://blog.alexellis.io/golang-json-api-client/ go run app.go
-{"internal":17,"external":15}
+    ```sh
+    go build
+
+    $ url=http://blog.alexellis.io/ ./href-counter
+    {"internal":40,"external":2}
+
+    $ url=http://blog.alexellis.io/golang-json-api-client/  ./href-counter
+    {"internal":17,"external":15}
+    ```
+
+* Build with multi-stage build
+
+    ```sh
+    ./build.sh
+    ```
+
+* Run with Docker
+
+    ```sh
+    docker run -e url=https://www.alexellis.io/ -ti alexellis2/href-counter:0.1.0
+    {"internal":6,"external":11}
+    ```
+
+* Build with multiple Dockerfiles
+
+    ```sh
+    ./build-multi-dockerfiles.sh
+    ```

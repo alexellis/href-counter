@@ -17,8 +17,8 @@ type scrapeDataStore struct {
 	External int `json:"external"`
 }
 
-func isInternal(parsedLink *url.URL, siteUrl *url.URL, link string) bool {
-	return parsedLink.Host == siteUrl.Host || strings.Index(link, "#") == 0 || len(parsedLink.Host) == 0
+func isInternal(parsedLink *url.URL, siteURL *url.URL, link string) bool {
+	return parsedLink.Host == siteURL.Host || strings.Index(link, "#") == 0 || len(parsedLink.Host) == 0
 }
 
 func main() {
@@ -28,7 +28,7 @@ func main() {
 		// log.Fatalln("Need a valid url as an env-var.")
 	}
 
-	siteUrl, parseErr := url.Parse(urlIn)
+	siteURL, parseErr := url.Parse(urlIn)
 
 	if parseErr != nil {
 		log.Fatalln(parseErr)
@@ -66,7 +66,7 @@ func main() {
 						// 	fmt.Println(parsedLink)
 						// }
 						if parseLinkErr == nil {
-							if isInternal(parsedLink, siteUrl, link) {
+							if isInternal(parsedLink, siteURL, link) {
 								scrapeData.Internal++
 							} else {
 								scrapeData.External++
