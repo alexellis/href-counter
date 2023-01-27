@@ -6,6 +6,16 @@ The `golang.org/x/net/html` package is used to iterate through all the HTML toke
 
 This can be built with the Dockerfile in the repository or through `go get`.
 
+### Learn more with my eBook - Everyday Go
+
+"Everyday Go" is the fast way to learn tools, techniques and patterns from real tools used in production.
+
+This book is a compilation of practical examples, lessons and techniques for Go developers. The topics cover the software lifecycle from learning the fundamentals, to software testing, to distribution and monitoring.
+
+Everyday Go also covers multi-stage builds, Dockerfiles and GitHub Actions in more detail.
+
+[Buy on Gumroad](https://gumroad.com/l/everyday-golang)
+
 ### References
 
 Used in these two blog posts:
