@@ -10,8 +10,8 @@ This can be built with the Dockerfile in the repository or through `go get`.
 
 Used in these two blog posts:
 
-* [One-shot containers on Docker Swarm](http://blog.alexellis.io/containers-on-swarm/)
 * [Builder pattern vs. Multi-stage builds in Docker](http://blog.alexellis.io/mutli-stage-docker-builds/)
+* [Docker docs: Use multi-stage builds](https://docs.docker.com/build/building/multi-stage/#use-multi-stage-builds)
 
 ### Running the example
 
