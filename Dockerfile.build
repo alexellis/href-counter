@@ -1,8 +1,10 @@
-FROM golang:1.13
+FROM golang:1.19
 
 WORKDIR /go/src/github.com/alexellis/href-counter/
 
-COPY vendor vendor
+COPY go.mod .
+COPY go.sum .
 COPY app.go	.
 
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
+
+RUN CGO_ENABLED=0 GOOS=linux go build  -ldflags "-s -w" -o app .
